@@ -1,0 +1,16 @@
+# fichiers cachés
+.*
+
+# mais garder git
+!.gitignore
+
+# mac
+.DS_Store
+
+# python
+__pycache__/
+*.pyc
+
+# environnements
+.env
+venv/

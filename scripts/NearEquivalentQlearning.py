@@ -58,28 +58,20 @@ def train_last_stage(final_stage, data_stages, Rewards_Zhao, possibles_treatment
 # --------------------------------------------------
 # Selects, for each patient (column), the values within epsilon margin
 # of the column max, sorted in descending order.
-# --------------------------------------------------
 def select_values_within_epsilon(predicted_matrix, epsilon):
-    """
-    Selects values within epsilon margin of the maximum value per patient.
-
-    Parameters:
-        predicted_matrix : np.ndarray of shape (num_treatments, num_patients).
-        epsilon : float margin allowed from the maximum.
-
-    Returns:
-        selected_values_array : np.ndarray (dtype=object) with selected values for each patient.
-    """
-    num_traitements, num_patients = predicted_matrix.shape
+    num_treatments, num_patients = predicted_matrix.shape
     selected_values_per_column = []
 
     for col in range(num_patients):
-        values = predicted_matrix[:, col]
-        max_value = np.max(values)
-        threshold = r((1 - epsilon) * max_value)
-        selected_values = values[values >= threshold]
-        selected_values_sorted = r(np.sort(selected_values)[::-1]).tolist()
-        selected_values_per_column.append(selected_values_sorted)
+        values = predicted_matrix[:, col].astype(float)
+        qmax = np.max(values)
+        threshold = qmax - epsilon * abs(qmax)
+
+        selected = values[values >= threshold]
+        if selected.size == 0:              # sécurité (NaN/edge cases)
+            selected = np.array([qmax])
+
+        selected_values_per_column.append(np.sort(selected)[::-1].tolist())
 
     return np.array(selected_values_per_column, dtype=object)
 
