@@ -1,4 +1,4 @@
-# Multiple_Policies_Qlearning
+# Near-Equivalent Q-learning
 Near-Equivalent Q-learning Policies for Dynamic Treatment Regimes
 
 This repository implements an extension of classical backward Q-learning that allows the identification of near-equivalent treatment strategies instead of a single optimal policy.
