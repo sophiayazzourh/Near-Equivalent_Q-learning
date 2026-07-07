@@ -58,6 +58,7 @@ def train_last_stage(final_stage, data_stages, Rewards_Zhao, possibles_treatment
 # --------------------------------------------------
 # Selects, for each patient (column), the values within epsilon margin
 # of the column max, sorted in descending order.
+# --------------------------------------------------
 def select_values_within_epsilon(predicted_matrix, epsilon):
     num_treatments, num_patients = predicted_matrix.shape
     selected_values_per_column = []

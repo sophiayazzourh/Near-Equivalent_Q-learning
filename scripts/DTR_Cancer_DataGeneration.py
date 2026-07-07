@@ -21,7 +21,7 @@ def odes(x, t, Y0, X0, D, a1=0.1, a2=0.15, b1=1.2, b2=1.2, d1=0.5, d2=0.5):
 
 
 # ==========================================================
-# FIXED-STEP INTEGRATOR (RK4) TO AVOID LSODA/odeint WARNINGS
+# FIXED-STEP INTEGRATOR (RK4) 
 # ==========================================================
 def rk4_step(Y, X, Y0, X0, D, dt=1.0, n_sub=50,
              a1=0.1, a2=0.15, b1=1.2, b2=1.2, d1=0.5, d2=0.5):
@@ -333,7 +333,7 @@ def generate_dataset(T_final=6, N=1000,
 
 
 # ==========================================================
-# REWARD CONSTRUCTION (same logic as your current script)
+# REWARD CONSTRUCTION 
 # ==========================================================
 def calculate_rewards(Data, Remission_Informations, Dead_Informations, T_final):
     # Output columns: patient id + stage-wise rewards
